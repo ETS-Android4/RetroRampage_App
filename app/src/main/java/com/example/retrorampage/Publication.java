@@ -11,9 +11,13 @@ public class Publication {
     private long imageID;
     private UUID publicationID;
 
-    //Definimos el constructor y su sobrecarga para el cursor
-    public Publication(){this (UUID.randomUUID());}
-    public Publication(UUID publicationID){this.publicationID = publicationID;}
+    //Definimos el constructor
+    public Publication(UUID id, long likesNumber, long imageID, String name){
+        this.publicationID = id;
+        this.imageID = imageID;
+        this.likesNumber = likesNumber;
+        this.name = name;
+    }
 
     //Definimos los get de la clase
     public String getName() {return name;}
