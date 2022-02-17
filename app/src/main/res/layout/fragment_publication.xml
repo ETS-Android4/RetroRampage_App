@@ -10,7 +10,6 @@
 
     <ImageView
 
-        android:src="@drawable/retro"
         android:layout_width="@dimen/width_publication_size"
         android:layout_height="@dimen/height_publication_size"
         android:id="@+id/image_view_fragment"/>
@@ -36,25 +35,16 @@
             android:layout_weight="9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
 
             android:text="@string/title_image"
             android:fontFamily="@font/alagard"
             android:textStyle="bold"
-
-            android:gravity="center_horizontal"
             android:textSize="@dimen/text_size_publication"/>
-
-        <ImageView
-
-            android:layout_weight="1"
-            android:layout_width="@dimen/width_image_button"
-            android:layout_height="@dimen/height_image_button"
-            android:src="@drawable/ic_action_like_full"/>
 
         <TextView
 
-            android:layout_weight="8"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:text="@string/likes_number"
@@ -63,6 +53,13 @@
 
             android:gravity="right"
             android:textSize="@dimen/text_size_publication"/>
+
+        <ImageView
+
+            android:layout_weight="1"
+            android:layout_width="@dimen/width_image_button"
+            android:layout_height="@dimen/height_image_button"
+            android:src="@drawable/ic_action_like_full"/>
 
     </LinearLayout>
 

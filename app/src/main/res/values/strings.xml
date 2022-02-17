@@ -2,4 +2,6 @@
     <string name="app_name">RetroRampage</string>
     <string name="title_image">Title image</string>
     <string name="likes_number">Number likes</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_back_title">Return to publications</string>
 </resources>

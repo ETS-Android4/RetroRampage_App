@@ -6,4 +6,5 @@
     <dimen name="width_image_button">15dp</dimen>
     <dimen name="height_image_button">20dp</dimen>
     <dimen name="text_size_publication">15sp</dimen>
+    <dimen name="size_title_app">20sp</dimen>
 </resources>
