@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RetroRampage</string>
     <string name="title_image">Title image</string>
+    <string name="likes_number">Number likes</string>
 </resources>
