@@ -10,6 +10,7 @@
 
     <ImageView
 
+        android:src="@drawable/retro"
         android:layout_width="@dimen/width_publication_size"
         android:layout_height="@dimen/height_publication_size"
         android:id="@+id/image_view_fragment"/>
@@ -21,14 +22,13 @@
         android:padding="@dimen/padding_linear_layout_description"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="@color/cardview_shadow_start_color">
+        android:background="#d6d7d7">
 
         <ImageButton
 
             android:layout_weight="1"
             android:layout_width="@dimen/width_image_button"
             android:layout_height="@dimen/height_image_button"
-            android:background=""
             android:src="@drawable/ic_action_like"/>
 
         <TextView
@@ -44,12 +44,11 @@
             android:gravity="center_horizontal"
             android:textSize="@dimen/text_size_publication"/>
 
-        <ImageButton
+        <ImageView
 
             android:layout_weight="1"
             android:layout_width="@dimen/width_image_button"
             android:layout_height="@dimen/height_image_button"
-            android:background=""
             android:src="@drawable/ic_action_like_full"/>
 
         <TextView
