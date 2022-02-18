@@ -2,33 +2,19 @@
 package com.example.retrorampage;
 
 //Importo las librerias necesarias
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
 //Declaro la clase y heredo de fragment
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity{
 
-    //
+    //Declaro los widget necesarios
     private ImageButton m_ReturnButton;
     private ImageButton m_RankingButton;
 
@@ -45,11 +31,8 @@ public class BaseActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //Asocio a la activity el viewpager
-        setContentView(R.layout.activity_publication_recycler_view);
-
         //
-        serializeWidgets();
+        setContentView(R.layout.activity_publication_recycler_view);
 
         //Obtengo el fragmentmanager
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -60,12 +43,17 @@ public class BaseActivity extends AppCompatActivity {
         //Si el fragment esta vacio accedemos
         if(fragment == null){
 
+            //
+            fragment = new PublicationFragment();
 
+            //
+            serializeWidgets();
 
         }
-        
+
     }
 
+    //
     private void serializeWidgets(){
 
         //
