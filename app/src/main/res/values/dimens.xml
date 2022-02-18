@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="width_publication_size">300</dimen>
-    <dimen name="height_publication_size">300</dimen>
+    <dimen name="width_publication_size">300dp</dimen>
+    <dimen name="height_publication_size">300dp</dimen>
     <dimen name="padding_linear_layout_description">8dp</dimen>
     <dimen name="width_image_button">15dp</dimen>
     <dimen name="height_image_button">20dp</dimen>

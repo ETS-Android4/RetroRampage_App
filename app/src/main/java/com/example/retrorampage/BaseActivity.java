@@ -5,7 +5,11 @@ package com.example.retrorampage;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,77 +18,44 @@ import android.widget.ImageButton;
 //Declaro la clase y heredo de fragment
 public class BaseActivity extends AppCompatActivity{
 
-    //Declaro los widget necesarios
-    private ImageButton m_ReturnButton;
-    private ImageButton m_RankingButton;
-
     //Defino el metodo que se ejecuta segun el ciclo de vida del fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //
+        //El sistema incluye funciones de ventana completa
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        //
+        //Asociamos (flags) características para esta windows
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //
+        //Asocio a la view un layout
         setContentView(R.layout.activity_publication_recycler_view);
+
+        //Instacio el fragment
+        instanceFragment();
+
+    }
+
+    //Metodo para instanciar el fragment
+    private void instanceFragment(){
 
         //Obtengo el fragmentmanager
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Asociamos el fragment con el fragment manager y su ID
-        Fragment fragment = fragmentManager.findFragmentById(R.id.fragment_publication_view_pager);
+        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_include);
 
         //Si el fragment esta vacio accedemos
         if(fragment == null){
 
-            //
+            //Instancio un fragment
             fragment = new PublicationFragment();
-
-            //
-            serializeWidgets();
+            fragmentManager.beginTransaction().add(R.id.frame_include,fragment).commit();
 
         }
-
-    }
-
-    //
-    private void serializeWidgets(){
-
-        //
-        this.m_RankingButton = (ImageButton) findViewById(R.id.ranking_button);
-        this.m_ReturnButton = (ImageButton) findViewById(R.id.return_button);
-
-        //
-        this.m_RankingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //
-                m_ReturnButton.setVisibility(View.VISIBLE);
-                m_RankingButton.setVisibility(View.INVISIBLE);
-
-            }
-
-        });
-
-        //
-        this.m_ReturnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                //
-                m_RankingButton.setVisibility(View.VISIBLE);
-                m_ReturnButton.setVisibility(View.INVISIBLE);
-
-            }
-
-        });
 
     }
 

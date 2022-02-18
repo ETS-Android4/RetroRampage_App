@@ -5,7 +5,6 @@
     android:layout_width="@dimen/width_publication_size"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/fragment_publication"
     android:layout_gravity="center_horizontal">
 
     <ImageView

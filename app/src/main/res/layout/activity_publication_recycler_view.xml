@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <include layout="@layout/toolbar_base_activity"
+    <include
+
+        layout="@layout/toolbar_base_activity"
         android:id="@+id/toolbar_base_activity">
 
     </include>
+
+    <FrameLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/frame_include"/>
 
     <androidx.recyclerview.widget.RecyclerView
 
