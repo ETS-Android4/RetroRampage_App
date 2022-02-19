@@ -42,10 +42,10 @@ public class PublicationLab {
     }
 
     //Metodo que devuelve una lista
-    public List<Publication> getPublications() {
+    public List<PublicationPOJO> getPublications() {
 
         //Instancio una lista vacia
-        List<Publication> publicationList = new ArrayList<>();
+        List<PublicationPOJO> publicationList = new ArrayList<>();
 
         //Obtengo el cursor asociado a la tabla
         CursorDabase cursor = queryPublications(null, null);
@@ -79,7 +79,7 @@ public class PublicationLab {
     }
 
     //Metodo para actualizar los datos de la publicacion
-    public void updatePublication(Publication publication) {
+    public void updatePublication(PublicationPOJO publication) {
 
         //Llamamos al metodo actualizar de la BD
         this.m_Database.update(
@@ -111,7 +111,7 @@ public class PublicationLab {
     }
 
     //Metodo para transformar una publication a un formato contentvalues
-    private static ContentValues getContentValues(Publication publication) {
+    private static ContentValues getContentValues(PublicationPOJO publication) {
 
         //Instancio un content de valores
         ContentValues values = new ContentValues();

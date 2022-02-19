@@ -5,7 +5,7 @@ package com.example.retrorampage.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.example.retrorampage.Publication;
+import com.example.retrorampage.PublicationPOJO;
 import com.example.retrorampage.R;
 import java.util.UUID;
 
@@ -19,17 +19,17 @@ public class ManagerDatabase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "publications.db";
 
     //Array de publicaciones para introducir la informacion inicial
-    private final Publication[] initialPublications = new Publication[]{
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.retro, "Retro"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.building, "Building"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.fuel, "Fuel Station"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.coffee, "Pub"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.hangar, "Workshop"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.marble, "House"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.planet, "Planet Arcade"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.stage, "Countryside"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.rocket, "Rocket"),
-            new Publication(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.hotel, "Hotel")
+    private final PublicationPOJO[] initialPublications = new PublicationPOJO[]{
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.retro, "Retro"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.building, "Building"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.fuel, "Fuel Station"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.coffee, "Pub"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.hangar, "Workshop"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.marble, "House"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.planet, "Planet Arcade"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.stage, "Countryside"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.rocket, "Rocket"),
+            new PublicationPOJO(UUID.randomUUID(), (int) (Math.random() * (100) + 1), R.drawable.hotel, "Hotel")
     };
 
     //Defino un constructor propio
@@ -62,7 +62,7 @@ public class ManagerDatabase extends SQLiteOpenHelper {
     }
 
     //Metodo para inserta una publicacion en una DB
-    private void insertInitialPublications(Publication publication, SQLiteDatabase sqLiteDatabase) {
+    private void insertInitialPublications(PublicationPOJO publication, SQLiteDatabase sqLiteDatabase) {
 
         //Sentencia que inserta informacion en la tabla
         sqLiteDatabase.execSQL("insert into " + DatabaseStructure.PublicationTable.NAME + "(" +

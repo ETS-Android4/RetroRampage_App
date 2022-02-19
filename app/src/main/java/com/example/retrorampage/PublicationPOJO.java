@@ -5,7 +5,7 @@ package com.example.retrorampage;
 import java.util.UUID;
 
 //Declaramos la clase que definira nuestro tipo de datos
-public class Publication {
+public class PublicationPOJO {
 
     //Defino los atributos de la clase
     private String name;
@@ -14,7 +14,7 @@ public class Publication {
     private UUID publicationID;
 
     //Definimos el constructor
-    public Publication(UUID id, long likesNumber, long imageID, String name){
+    public PublicationPOJO(UUID id, long likesNumber, long imageID, String name){
         this.publicationID = id;
         this.imageID = imageID;
         this.likesNumber = likesNumber;

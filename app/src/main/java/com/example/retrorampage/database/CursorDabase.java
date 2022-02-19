@@ -4,7 +4,7 @@ package com.example.retrorampage.database;
 //Importamos las librerias necesarias
 import android.database.Cursor;
 import android.database.CursorWrapper;
-import com.example.retrorampage.Publication;
+import com.example.retrorampage.PublicationPOJO;
 import java.util.UUID;
 
 //Defino la clase y heredo, esta clase sirve para usar el cursor
@@ -16,8 +16,8 @@ public class CursorDabase extends CursorWrapper {
     }
 
     //Metodo que devolvera una publicacion con datos mediante el cursor
-    public Publication getPublication() {
-        return new Publication(
+    public PublicationPOJO getPublication() {
+        return new PublicationPOJO(
                 UUID.fromString(getString(getColumnIndex(DatabaseStructure.PublicationTable.Cols.UUID))),
                 getLong(getColumnIndex(DatabaseStructure.PublicationTable.Cols.LIKES)),
                 getLong(getColumnIndex(DatabaseStructure.PublicationTable.Cols.IMG)),

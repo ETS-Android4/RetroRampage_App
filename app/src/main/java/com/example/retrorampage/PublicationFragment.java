@@ -96,7 +96,7 @@ public class PublicationFragment extends Fragment {
         PublicationLab publicationLab = PublicationLab.get(getActivity());
 
         //Instancio una lista nula
-        List<Publication> publicationsList = null;
+        List<PublicationPOJO> publicationsList = null;
 
         //En funcion del tipo de accion llenare la lista de una forma u otra
         if (typeAction == RANKING_ACTION) {
@@ -105,7 +105,7 @@ public class PublicationFragment extends Fragment {
             publicationsList = publicationLab.getPublications();
 
             //Declaro una lista vacia para introducir publicaciones
-            List<Publication> temporaryList = new ArrayList<>();
+            List<PublicationPOJO> temporaryList = new ArrayList<>();
 
             //Si la lista contiene elementos accedemos
             if (publicationsList != null) {
@@ -114,7 +114,7 @@ public class PublicationFragment extends Fragment {
                 for (int j = 0; j < 5; j++) {
 
                     //Obtenemos la publicacion inicial
-                    Publication publication = publicationsList.get(0);
+                    PublicationPOJO publication = publicationsList.get(0);
 
                     for (int i = 0; i < publicationsList.size(); i++) {
 
@@ -172,7 +172,7 @@ public class PublicationFragment extends Fragment {
         private TextView m_TitlePublication;
         private ImageButton m_LikeButton;
         private TextView m_LikeNumber;
-        private Publication publication;
+        private PublicationPOJO publication;
 
         //Definimos un constructor en el que asociamos una vista
         public PublicationHolder(@NonNull View itemView) {
@@ -192,7 +192,7 @@ public class PublicationFragment extends Fragment {
         }
 
         //Metodo para actualizar el fragment actual y sus atributos
-        public void bind(Publication publication) {
+        public void bind(PublicationPOJO publication) {
 
             //Obtengo la informacion de la publicacion y actualizo los widget
             this.publication = publication;
@@ -229,10 +229,10 @@ public class PublicationFragment extends Fragment {
     private class PublicationAdapter extends RecyclerView.Adapter<PublicationHolder> {
 
         //Definimos una lista de publications
-        private List<Publication> publicationsList;
+        private List<PublicationPOJO> publicationsList;
 
         //Definimos el constructor que instancia una lista
-        public PublicationAdapter(List<Publication> publications) {
+        public PublicationAdapter(List<PublicationPOJO> publications) {
             this.publicationsList = publications;
         }
 
