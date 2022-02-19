@@ -5,14 +5,12 @@ package com.example.retrorampage;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
 //Declaro la clase y heredo de fragment
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity {
 
     //Defino el metodo que se ejecuta segun el ciclo de vida del fragment
     @Override
@@ -36,7 +34,7 @@ public class BaseActivity extends AppCompatActivity{
     }
 
     //Metodo para instanciar el fragment
-    private void instanceFragment(){
+    private void instanceFragment() {
 
         //Obtengo el fragmentmanager
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -45,11 +43,11 @@ public class BaseActivity extends AppCompatActivity{
         Fragment fragment = fragmentManager.findFragmentById(R.id.activity_base_publication);
 
         //Si el fragment esta vacio accedemos
-        if(fragment == null){
+        if (fragment == null) {
 
             //Instancio un fragment
             fragment = new PublicationFragment();
-            fragmentManager.beginTransaction().add(R.id.activity_base_publication,fragment).commit();
+            fragmentManager.beginTransaction().add(R.id.activity_base_publication, fragment).commit();
 
         }
 

@@ -3,21 +3,17 @@ package com.example.retrorampage;
 
 //Importo las librerias necesarias
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,18 +28,12 @@ public class PublicationFragment extends Fragment {
     private ImageButton m_ReturnButton;
     private ImageButton m_RankingButton;
 
-    //
+    //Defino dos tipos de acciones para ejecutar con los botones de tooglebar
     public static final int RANKING_ACTION = 0;
     public static final int NORMAL_ACTION = 1;
 
-    //
+    //Defino una view asociada al fragment
     private View viewFragment;
-
-    //
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     //Metodo para definir nuestra UI
     @Nullable
@@ -51,20 +41,19 @@ public class PublicationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         //Adjunta las vistas a su padre, cualquier evento táctil que reciban las vistas se transferirá a la principal
-        this.viewFragment = inflater.inflate(R.layout.fragment_publication_recycler_view,container,false);
+        this.viewFragment = inflater.inflate(R.layout.fragment_publication_recycler_view, container, false);
 
-        //
+        //Instancio el adaptador con la lista inicial
         instanceAdapter(this.viewFragment, NORMAL_ACTION);
 
-        //
+        //Serializo los elementos
         serializeWidgets();
-
         return viewFragment;
 
     }
 
     //Metodo para serializar widget y darles un comportamiento
-    private void serializeWidgets(){
+    private void serializeWidgets() {
 
         //Serilializo los widget mediante la activity que posee sus ID
         this.m_RankingButton = (ImageButton) getActivity().findViewById(R.id.ranking_button);
@@ -100,22 +89,61 @@ public class PublicationFragment extends Fragment {
 
     }
 
-    //
-    private void instanceAdapter(View view, int typeAction){
+    //Metodo que instancia el adaptador y transfiere la lista
+    private void instanceAdapter(View view, int typeAction) {
 
         //Instancio un publicationLab con un nuevo context
         PublicationLab publicationLab = PublicationLab.get(getActivity());
 
-        //
+        //Instancio una lista nula
         List<Publication> publicationsList = null;
 
-        //
-        if(typeAction == RANKING_ACTION){
+        //En funcion del tipo de accion llenare la lista de una forma u otra
+        if (typeAction == RANKING_ACTION) {
 
             //Obtengo la lista mediante el lab
-            publicationsList = new ArrayList<>();
+            publicationsList = publicationLab.getPublications();
 
-        } else if (typeAction == NORMAL_ACTION){
+            //Declaro una lista vacia para introducir publicaciones
+            List<Publication> temporaryList = new ArrayList<>();
+
+            //Si la lista contiene elementos accedemos
+            if (publicationsList != null) {
+
+                //Recorro la lista para mostrar 5 publicaciones en el ranking
+                for (int j = 0; j < 5; j++) {
+
+                    //Obtenemos la publicacion inicial
+                    Publication publication = publicationsList.get(0);
+
+                    for (int i = 0; i < publicationsList.size(); i++) {
+
+                        //Si el n de likes es mayor  y la lista no contiene la publicacion la cambiamos
+                        if (publicationsList.get(i).getLikesNumber() >= publication.getLikesNumber()) {
+
+                            //Añadimos la publicacion a la lista
+                            publication = publicationsList.get(i);
+
+                        }
+
+                    }
+
+                    //Borramos la publicacion de la lista
+                    publicationsList.remove(publication);
+
+                    //Añado la publicacion de mayor a menor
+                    if (!temporaryList.contains(publication)) {
+                        temporaryList.add(publication);
+                    }
+
+                }
+
+                //Establezco la lista igual a la obtenida
+                publicationsList = temporaryList;
+
+            }
+
+        } else if (typeAction == NORMAL_ACTION) {
 
             //Obtengo la lista mediante el lab
             publicationsList = publicationLab.getPublications();
@@ -136,7 +164,6 @@ public class PublicationFragment extends Fragment {
 
     }
 
-
     //Clase que sirve para definir cada view de cada publicacion con su contenido
     private class PublicationHolder extends RecyclerView.ViewHolder {
 
@@ -153,7 +180,7 @@ public class PublicationFragment extends Fragment {
         }
 
         //Defino el constructor donde asocio el layout y sus elementos a la view
-        public PublicationHolder(LayoutInflater inflater, ViewGroup parent){
+        public PublicationHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.fragment_publication, parent, false));
 
             //Serializo los componentes
@@ -165,23 +192,31 @@ public class PublicationFragment extends Fragment {
         }
 
         //Metodo para actualizar el fragment actual y sus atributos
-        public void bind(Publication publication){
+        public void bind(Publication publication) {
 
             //Obtengo la informacion de la publicacion y actualizo los widget
             this.publication = publication;
             this.m_TitlePublication.setText(this.publication.getName());
-            this.m_LikeNumber.setText(""+this.publication.getLikesNumber());
-            this.m_ImagePublication.setImageResource((int)this.publication.getImageID());
+            this.m_LikeNumber.setText("" + this.publication.getLikesNumber());
+            this.m_ImagePublication.setImageResource((int) this.publication.getImageID());
 
             //Le doy un comportamiento al boton de like
             this.m_LikeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    //Incremento en 1 el numero de likes
+                    //Obtengo un crimelab
+                    PublicationLab publicationLab = PublicationLab.get(getContext());
+
+                    //Actualizo mi publicacion actual
                     publication.setLikesNumber(publication.getLikesNumber() + 1);
-                    m_LikeNumber.setText(""+ publication.getLikesNumber());
-                    Toast.makeText(getActivity(), "LIKE!", Toast.LENGTH_LONG).show();
+
+                    //Llamo al metodo para actualizar la publicacion de la DB
+                    publicationLab.updatePublication(publication);
+
+                    //Establezo un nuevo texto para el n de likes
+                    m_LikeNumber.setText("" + publication.getLikesNumber());
+
                 }
 
             });
@@ -191,13 +226,15 @@ public class PublicationFragment extends Fragment {
     }
 
     //Declaro una clase, heredamos de adapter y lo asociamos al holder
-    private class PublicationAdapter extends RecyclerView.Adapter<PublicationHolder>{
+    private class PublicationAdapter extends RecyclerView.Adapter<PublicationHolder> {
 
         //Definimos una lista de publications
         private List<Publication> publicationsList;
 
         //Definimos el constructor que instancia una lista
-        public PublicationAdapter(List<Publication>publications){this.publicationsList = publications;}
+        public PublicationAdapter(List<Publication> publications) {
+            this.publicationsList = publications;
+        }
 
         //Definimos el constructor
         @NonNull
@@ -211,7 +248,7 @@ public class PublicationFragment extends Fragment {
             serializeWidgets();
 
             //Instaciamos un publication holder con el layout y el contenedor de vistas
-            return new PublicationHolder(layoutInflater,parent);
+            return new PublicationHolder(layoutInflater, parent);
 
         }
 

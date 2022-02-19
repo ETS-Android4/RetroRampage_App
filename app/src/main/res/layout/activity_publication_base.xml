@@ -2,10 +2,10 @@
 <FrameLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_base_publication"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:id="@+id/activity_base_publication">
+    android:background="@drawable/background">
 
     <include
 

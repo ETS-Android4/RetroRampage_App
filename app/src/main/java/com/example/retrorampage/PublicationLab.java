@@ -2,20 +2,15 @@
 package com.example.retrorampage;
 
 //Importo las librerias necesarias
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import com.example.retrorampage.database.CursorDabase;
 import com.example.retrorampage.database.DatabaseStructure;
 import com.example.retrorampage.database.ManagerDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 //Declaro una clase para administrar las publications
 public class PublicationLab {
@@ -83,17 +78,15 @@ public class PublicationLab {
 
     }
 
-    //Metodo para añadir una publication
-    public void addPublication(Publication publication){
+    //Metodo para actualizar los datos de la publicacion
+    public void updatePublication(Publication publication) {
 
-        //Obtenemos los valores en un formato de publication
-        ContentValues publicationValues = getContentValues(publication);
-
-        //Insertamos la publication mandada por parametro
-        this.m_Database.insert(
-                DatabaseStructure.PublicationTable.Cols.NAME,
-                null,
-                publicationValues);
+        //Llamamos al metodo actualizar de la BD
+        this.m_Database.update(
+                DatabaseStructure.PublicationTable.NAME,                        //Nombre de la tabla
+                getContentValues(publication),                                  //Valores de la publication
+                DatabaseStructure.PublicationTable.Cols.UUID + "= ?", //Condicion
+                new String[]{publication.getPublicationID().toString()});       //UUID de la publicacion
 
     }
 

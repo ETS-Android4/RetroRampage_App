@@ -1,5 +1,7 @@
+//Asocio la clase al paquete
 package com.example.retrorampage;
 
+//Importo las librerias necesarias
 import java.util.UUID;
 
 //Declaramos la clase que definira nuestro tipo de datos
