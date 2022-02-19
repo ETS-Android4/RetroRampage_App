@@ -6,14 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Debug;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 
 //Declaro la clase y heredo de fragment
 public class BaseActivity extends AppCompatActivity{
@@ -32,7 +27,7 @@ public class BaseActivity extends AppCompatActivity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Asocio a la view un layout
-        setContentView(R.layout.activity_publication_recycler_view);
+        setContentView(R.layout.activity_publication_base);
 
         //Instacio el fragment
         instanceFragment();
@@ -46,14 +41,14 @@ public class BaseActivity extends AppCompatActivity{
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Asociamos el fragment con el fragment manager y su ID
-        Fragment fragment = fragmentManager.findFragmentById(R.id.frame_include);
+        Fragment fragment = fragmentManager.findFragmentById(R.id.activity_base_publication);
 
         //Si el fragment esta vacio accedemos
         if(fragment == null){
 
             //Instancio un fragment
             fragment = new PublicationFragment();
-            fragmentManager.beginTransaction().add(R.id.frame_include,fragment).commit();
+            fragmentManager.beginTransaction().add(R.id.activity_base_publication,fragment).commit();
 
         }
 
