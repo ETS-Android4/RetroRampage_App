@@ -9,8 +9,8 @@
 
     <include
 
-        layout="@layout/toolbar_base_activity"
-        android:id="@+id/toolbar_base_activity">
+        android:id="@+id/toolbar_base_activity"
+        layout="@layout/toolbar_base_activity">
 
     </include>
 

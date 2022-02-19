@@ -2,16 +2,17 @@
 <LinearLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/width_publication_size"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_gravity="center_horizontal">
+    android:layout_marginBottom="@dimen/margin_between_publications">
 
     <ImageView
 
         android:layout_width="@dimen/width_publication_size"
         android:layout_height="@dimen/height_publication_size"
-        android:id="@+id/image_view_fragment"/>
+        android:id="@+id/image_view_fragment"
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
 
@@ -61,6 +62,7 @@
             android:layout_weight="1"
             android:layout_width="@dimen/width_image_button"
             android:layout_height="@dimen/height_image_button"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_action_like_full"/>
 
     </LinearLayout>

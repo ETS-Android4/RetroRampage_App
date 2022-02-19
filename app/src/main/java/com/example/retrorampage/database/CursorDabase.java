@@ -18,13 +18,11 @@ public class CursorDabase extends CursorWrapper {
 
    //Metodo que devolvera una publicacion con datos mediante el cursor
    public Publication getPublication(){
-
        return new Publication(
                UUID.fromString(getString(getColumnIndex(DatabaseStructure.PublicationTable.Cols.UUID))),
                getLong(getColumnIndex(DatabaseStructure.PublicationTable.Cols.LIKES)),
                getLong(getColumnIndex(DatabaseStructure.PublicationTable.Cols.IMG)),
                getString(getColumnIndex(DatabaseStructure.PublicationTable.Cols.NAME)));
-
    }
 
 }
